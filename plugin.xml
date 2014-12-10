@@ -5,7 +5,7 @@
 	id="com.rjfun.cordova.extension"
 	version="1.0.5">
       
-    <name>Generic Ad</name>
+    <name>Cordova Plugin Extension</name>
 	<description>Common interface and reusable code, as dependency of other plugins</description>
 	<author>Liming Xie</author>
 	<license>MIT</license>

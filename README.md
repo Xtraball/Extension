@@ -73,7 +73,7 @@ This plugin is used as dependency of other plugins, for plugin developers only.
 In your plugin.xml, add it as dependency:
 
 ```xml
-<dependency id="com.rjfun.cordova.extension"/>
+<dependency id="cordova-plugin-extension"/>
 ```
 
 Inherit Cordova Plugin Ext:

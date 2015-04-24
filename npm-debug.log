@@ -1,0 +1,95 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/opt/local/bin/node', '/opt/local/bin/npm', 'publish', '.' ]
+2 info using npm@2.8.3
+3 info using node@v0.12.2
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec { raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/liming/workspace/cordova-plugins/cordova-extension',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/liming/.npm/cordova-plugin-extension/1.0.9/package.tgz not in flight; packing
+9 verbose tar pack [ '/Users/liming/.npm/cordova-plugin-extension/1.0.9/package.tgz',
+9 verbose tar pack   '/Users/liming/workspace/cordova-plugins/cordova-extension' ]
+10 verbose tarball /Users/liming/.npm/cordova-plugin-extension/1.0.9/package.tgz
+11 verbose folder /Users/liming/workspace/cordova-plugins/cordova-extension
+12 info prepublish cordova-plugin-extension@1.0.9
+13 verbose addLocalTarball adding from inside cache /Users/liming/.npm/cordova-plugin-extension/1.0.9/package.tgz
+14 silly cache afterAdd cordova-plugin-extension@1.0.9
+15 verbose afterAdd /Users/liming/.npm/cordova-plugin-extension/1.0.9/package/package.json not in flight; writing
+16 verbose afterAdd /Users/liming/.npm/cordova-plugin-extension/1.0.9/package/package.json written
+17 silly publish { name: 'cordova-plugin-extension',
+17 silly publish   version: '1.0.9',
+17 silly publish   description: 'Cordova Plugin common extension with adapter interface',
+17 silly publish   cordova:
+17 silly publish    { id: 'cordova-plugin-extension',
+17 silly publish      platforms: [ 'android', 'ios' ] },
+17 silly publish   repository:
+17 silly publish    { type: 'git',
+17 silly publish      url: 'git+https://github.com/floatinghotpot/cordova-extension.git' },
+17 silly publish   keywords: [ 'cordova', 'ecosystem:cordova', 'extension', 'rjfun' ],
+17 silly publish   author: { name: 'Liming Xie' },
+17 silly publish   license: 'MIT',
+17 silly publish   readme: '\n# Cordova Plugin Common Extension #\n\nExtend the Cordova plugin base class with adapter interface.\n\nPlugin written based on this interface, may also be reused for Unity, Cocos2d-X, and other frameworks.\n\n# Purpose #\n\nMake Cordova Plugins reusable.\n\nTo use mobile device native functionalities and integrate 3rd-party SDKs, mobile developers are writting hundreds plugins for Cordova, Unity, Cocos2d-X, and other frameworks. \n\nCan they be reused? Yes, it\'s possible. \n\nCordova plugin manager is bridging function call between javascript and native languages, actually, it can be ported to bridge with C, C++, C#, then it can be reused for Unity, Cocos2d-X and other frameworks.\n\nSee:\n* Adapter for Cordova, (implemented as default, [Android](https://github.com/floatinghotpot/cordova-extension/blob/master/src/android/CordovaPluginExt.java) / [iOS](https://github.com/floatinghotpot/cordova-extension/blob/master/src/ios/CDVPluginExt.m) )\n* [Adapter for Unity](https://github.com/floatinghotpot/cordova-extension/tree/master/unity)\n* [Adapter for Cocos2d-X](https://github.com/floatinghotpot/cordova-extension/tree/master/cocos2dx)\n\n# How it works ? #\n\nAndroid implementation:\n\n```java\npublic interface PluginAdapterDelegate {\n\t// context\n\tpublic Activity getActivity();\n\tpublic View getView();\n\t// send message from plugin to container on events\n\tpublic void fireEvent(String obj, String eventName, String jsonData);\n\t// send call result\n\tpublic void sendPluginResult(PluginResult result, CallbackContext context);\n}\n\npublic class CordovaPluginExt extends CordovaPlugin implements PluginAdapterDelegate {\n\tprotected PluginAdapterDelegate adapter = null;\n}\n\n\n```\n\niOS implementation:\n\n```objective-c\n@protocol PluginAdapterDelegate <NSObject>\n\t// context\n- (UIView*) getView;\n- (UIViewController*) getViewController;\n\t// send message from plugin to container on events\n- (void) fireEvent:(NSString*)obj event:(NSString*)eventName withData:(NSString*)jsonStr;\n\t// send call result\n- (void) sendPluginResult:(CDVPluginResult*)result to:(NSString*)callbackId;\n@end\n\n@interface CDVPluginExt : CDVPlugin <PluginAdapterDelegate>\n@property(nonatomic, retain) id<PluginAdapterDelegate> adapter;\n@end\n\n\n```\n\nOther platform:\n\nNot implemented yet.\n\n# How to Use? #\n\nThis plugin is used as dependency of other plugins, for plugin developers only.\n\nIn your plugin.xml, add it as dependency:\n\n```xml\n<dependency id="cordova-plugin-extension"/>\n```\n\nInherit Cordova Plugin Ext:\n\nPlugin for Android:\n\n```java\nimport com.rjfun.cordova.ext.*;\n\n// your plugin class\npublic class YourPluginClass extends CordovaPluginExt {\n\t// implement the method, call the API defined in PluginAdapterDelegate\n\tpublic boolean execute(String action, JSONArray inputs, CallbackContext callbackContext) throws JSONException;\n}\n```\n\nPlugin for iOS:\n```objective-c\n#import "CDVCordovaExt.h"\n\n// your plugin class\n@interface YourPluginClass : CDVPluginExt\n\t// implement the method, call the API defined in PluginAdapterDelegate\n- (void) your_method:(CDVInvokedUrlCommand *)command;\n@end\n```\n\n# Related Projects #\n\nTo use the plugin in other frameworks, following plugin managers are required.\n\n* [Cordova Plugin Manager for Unity](https://github.com/floatinghotpot/cordova-for-unity)\n* [Cordova Plugin Manager for Cocos2d-X](https://github.com/floatinghotpot/cordova-for-cocos2dx)\n\n# Credit #\n\nThis project is created by Raymond Xie.\n\nIf you are interested in this project, welcome to join and contribute.\n\n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: 'e33c697601fa8061ebbc7cfb04dc0af95799774c',
+17 silly publish   bugs: { url: 'https://github.com/floatinghotpot/cordova-extension/issues' },
+17 silly publish   homepage: 'https://github.com/floatinghotpot/cordova-extension#readme',
+17 silly publish   _id: 'cordova-plugin-extension@1.0.9',
+17 silly publish   scripts: {},
+17 silly publish   _shasum: 'd8afb845defd1a6c944da861eb8dbda2342ccd7d',
+17 silly publish   _from: '.' }
+18 silly mapToRegistry name cordova-plugin-extension
+19 silly mapToRegistry using default registry
+20 silly mapToRegistry registry https://registry.npmjs.org/
+21 silly mapToRegistry uri https://registry.npmjs.org/cordova-plugin-extension
+22 verbose publish registryBase https://registry.npmjs.org/
+23 silly publish uploading /Users/liming/.npm/cordova-plugin-extension/1.0.9/package.tgz
+24 verbose request uri https://registry.npmjs.org/cordova-plugin-extension
+25 verbose request sending authorization for write operation
+26 info attempt registry request try #1 at 上午11:36:08
+27 verbose request using bearer token for auth
+28 verbose request id fdbc9377c2d21702
+29 http request PUT https://registry.npmjs.org/cordova-plugin-extension
+30 http 403 https://registry.npmjs.org/cordova-plugin-extension
+31 verbose headers { date: 'Fri, 24 Apr 2015 03:36:11 GMT',
+31 verbose headers   server: 'Apache',
+31 verbose headers   'content-type': 'application/json',
+31 verbose headers   'cache-control': 'max-age=60',
+31 verbose headers   'content-length': '95',
+31 verbose headers   'accept-ranges': 'bytes',
+31 verbose headers   via: '1.1 varnish',
+31 verbose headers   'x-served-by': 'cache-nrt6134-NRT',
+31 verbose headers   'x-cache': 'MISS',
+31 verbose headers   'x-cache-hits': '0',
+31 verbose headers   'x-timer': 'S1429846569.273704,VS0,VE2158',
+31 verbose headers   'keep-alive': 'timeout=10, max=50',
+31 verbose headers   connection: 'Keep-Alive' }
+32 verbose request invalidating /Users/liming/.npm/registry.npmjs.org/cordova-plugin-extension on PUT
+33 error publish Failed PUT 403
+34 verbose stack Error: "You cannot publish over the previously published version 1.0.9." : cordova-plugin-extension
+34 verbose stack     at CachingRegistryClient.<anonymous> (/opt/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
+34 verbose stack     at Request._callback (/opt/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+34 verbose stack     at Request.self.callback (/opt/local/lib/node_modules/npm/node_modules/request/request.js:368:22)
+34 verbose stack     at Request.emit (events.js:110:17)
+34 verbose stack     at Request.<anonymous> (/opt/local/lib/node_modules/npm/node_modules/request/request.js:1219:14)
+34 verbose stack     at Request.emit (events.js:129:20)
+34 verbose stack     at IncomingMessage.<anonymous> (/opt/local/lib/node_modules/npm/node_modules/request/request.js:1167:12)
+34 verbose stack     at IncomingMessage.emit (events.js:129:20)
+34 verbose stack     at _stream_readable.js:908:16
+34 verbose stack     at process._tickCallback (node.js:355:11)
+35 verbose statusCode 403
+36 verbose pkgid cordova-plugin-extension
+37 verbose cwd /Users/liming/workspace/cordova-plugins/cordova-extension
+38 error Darwin 14.3.0
+39 error argv "/opt/local/bin/node" "/opt/local/bin/npm" "publish" "."
+40 error node v0.12.2
+41 error npm  v2.8.3
+42 error code E403
+43 error "You cannot publish over the previously published version 1.0.9." : cordova-plugin-extension
+44 error If you need help, you may report this error at:
+44 error     <https://github.com/npm/npm/issues>
+45 verbose exit [ 1, true ]
